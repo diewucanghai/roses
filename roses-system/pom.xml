@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.stylefeng.roses</groupId>
+    <artifactId>roses-system</artifactId>
+    <version>1.1.0</version>
+
+    <packaging>pom</packaging>
+
+    <name>roses-system</name>
+    <description>系统管理，包含权限管理，组织架构管理，可同时集成文件，字典，日志管理</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.1.RELEASE</version>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <kernel.version>1.1.0</kernel.version>
+    </properties>
+
+    <modules>
+        <module>roses-system-api</module>
+        <module>roses-system-app</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-core</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-jwt</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-logger</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-scanner</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-validator</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-model</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>kernel-actuator</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>biz-support-dict</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>biz-support-file</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.stylefeng.roses</groupId>
+                <artifactId>biz-support-log</artifactId>
+                <version>${kernel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <spring.active>local</spring.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.active>dev</spring.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <spring.active>test</spring.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>produce</id>
+            <properties>
+                <spring.active>produce</spring.active>
+            </properties>
+        </profile>
+    </profiles>
+
+    <developers>
+        <developer>
+            <name>stylefeng</name>
+            <email>sn93@qq.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git@gitee.com:stylefeng-Roses/roses-kernel.git</connection>
+        <developerConnection>scm:git@gitee.com:stylefeng-Roses/roses-kernel.git</developerConnection>
+        <url>https://gitee.com/stylefeng-Roses/roses-kernel</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>center</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>center</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
+</project>
