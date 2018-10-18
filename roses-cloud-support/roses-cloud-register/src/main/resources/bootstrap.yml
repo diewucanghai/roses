@@ -2,10 +2,12 @@ spring:
   application:
     name: roses-cloud-register
   profiles:
-    active: @spring.active@
+    #active: @spring.active@
+    active: local
   cloud:
     config:
-      profile: @spring.active@
+      #profile: @spring.active@
+      profile: local
       label: master
 
 ---
