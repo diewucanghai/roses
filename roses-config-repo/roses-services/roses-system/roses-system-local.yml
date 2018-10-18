@@ -18,9 +18,18 @@ aliyun:
 
 jwt:
   secret: abcdefg
-  expiration: 82800
+  expiration: 82800   
 
 spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    max_active: 1024
+    max_idle: 200
+    max_wait: 10000
+    timeout : 10000
+    test_on_borrow: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/roses_system?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC
     username: root
